@@ -1,0 +1,52 @@
+def wczytaj_dane():
+    with open("dane.txt", "r", encoding="utf-8") as plik:
+        dane = plik.readlines()
+
+    dane = [element.strip() for element in dane]
+    return dane
+
+
+def wyswietl_dane(dane):
+    print("\n--- DANE ---")
+    for element in dane:
+        print(element)
+
+
+def posortuj_dane(dane):
+    posortowane = dane.copy()
+    posortowane.sort()
+
+    with open("dane_posortowane.txt", "w", encoding="utf-8") as plik:
+        for element in posortowane:
+            plik.write(element + "\n")
+
+    print("\nDane zostały posortowane alfabetycznie.")
+    print("Zapisano je w pliku dane_posortowane.txt")
+
+
+def menu():
+    dane = wczytaj_dane()
+
+    while True:
+        print("\n===== MENU =====")
+        print("1. Wyświetl dane")
+        print("2. Posortuj dane")
+        print("3. Zakończ program")
+
+        wybor = input("Wybierz opcję: ")
+
+        if wybor == "1":
+            wyswietl_dane(dane)
+
+        elif wybor == "2":
+            posortuj_dane(dane)
+
+        elif wybor == "3":
+            print("Koniec programu.")
+            break
+
+        else:
+            print("Nieprawidłowa opcja. Wybierz 1, 2 lub 3.")
+
+
+menu()
